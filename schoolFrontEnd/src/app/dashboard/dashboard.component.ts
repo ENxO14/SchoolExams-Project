@@ -22,7 +22,7 @@ export class DashboardComponent {
     this.router.navigate(['/users']);
   }
   sicn()  {
-    this.router.navigate(['/users']);
+    this.router.navigate(['/verifSci']);
   }
 
 }

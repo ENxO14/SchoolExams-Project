@@ -176,7 +176,7 @@ def data():
         conn = connection()
         # Create a cursor
         cur = conn.cursor(as_dict=True)
-        cur.execute("SELECT * FROM verificaTec")
+        cur.execute("SELECT * FROM verificaTec WHERE course = 'Tecnico Informatico'")
         data = cur.fetchall()
         dataJson = []
         print(data)
@@ -204,6 +204,131 @@ def data():
 
 @app.route('/users/<int:id>', methods=['GET', 'DELETE', 'PUT'])
 def onedata(id):
+
+    # GET a specific data by id
+    if request.method == 'GET':
+        conn = connection()
+        # Create a cursor
+        cur = conn.cursor(as_dict=True)
+        cur.execute("SELECT * FROM verificaTec WHERE id = %s", (id, ))
+        ver = cur.fetchone()
+        dataDict = {
+            'id': ver['id'],
+            'title': ver['title'],
+            'course': ver['course'],
+            'tipo': ver['tipo'],
+            'difficulty': ver['difficulty'],
+            'duration': ver['duration'],
+            'classe': ver['classe'],
+            'subject': ver['subject']
+        }
+        cur.close()
+        conn.close()
+        return jsonify(dataDict)
+        
+
+    # DELETE a data
+    if request.method == 'DELETE':
+        conn = connection()
+        cur = conn.cursor()
+
+        cur.execute('SELECT * FROM verificaTec WHERE id = %s', (id,))
+        ver = cur.fetchone()
+        if ver:
+            cur.execute('DELETE FROM verificaTec WHERE id = %s', (id,))
+            conn.commit()
+            cur.close()
+            conn.close()
+            return jsonify({'status': 'Data id: ' + str(id) + ' is deleted!'})
+        else:
+            return jsonify({"message": "Data not found"}), 404
+
+    # UPDATE a data by id
+    if request.method == 'PUT':
+        body = request.json
+        title = body['title']
+        course = body['course']
+        tipo = body['tipo']
+        difficulty = body['difficulty']
+        duration = body['duration']
+        classe = body['classe']
+        subject = body['subject']
+
+        conn = connection()
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM verificaTec WHERE id = %s", (id,))
+        ver = cur.fetchone()
+        if ver:
+            cur.execute("UPDATE verificaTec SET title = %s, course = %s, tipo = %s, difficulty = %s, duration = %s, classe = %s, subject = %s WHERE id = %s", (title, course, tipo, difficulty, duration, classe, subject, id))
+            conn.commit()
+            cur.close()
+            conn.close()
+            return jsonify({'status': 'Data id: ' + str(id) + ' is updated!'})
+        else:
+            return jsonify({"message": "Data not found"}), 404
+
+@app.route('/verifSci', methods=['POST', 'GET'])
+def data1():
+    conn = connection()
+    # Create a cursor
+    cur = conn.cursor(as_dict=True)
+    # POST a data to database
+    if request.method == 'POST':
+        body = request.json
+        title = body['title']
+        course = body['course']
+        tipo = body['tipo']
+        difficulty = body['difficulty']
+        duration = body['duration']
+        classe = body['classe']
+        subject = body['subject']
+        
+        cur.execute("INSERT INTO verificaTec (title,course,tipo,difficulty,duration, classe,subject) VALUES (%s,%s,%s,%s,%s,%s,%s)", (title, course,tipo,difficulty,duration,classe,subject))
+        conn.commit()
+        return jsonify({
+            'status': 'Data is posted to SQLite!',
+            'title': title,
+            'course': course,
+            'tipo':tipo,
+            'difficulty':difficulty,
+            'duration':duration,
+            'classe':classe,
+            'subject':subject
+        })
+
+    # GET all data from database
+    if request.method == 'GET':
+        conn = connection()
+        # Create a cursor
+        cur = conn.cursor(as_dict=True)
+        cur.execute("SELECT * FROM verificaTec WHERE course = 'Liceo Scienze Applicate'")
+        data = cur.fetchall()
+        dataJson = []
+        print(data)
+        for doc in data:
+            id = doc['id']
+            title = doc['title']
+            course = doc['course']
+            tipo = doc['tipo']
+            difficulty = doc['difficulty']
+            duration = doc['duration']
+            classe = doc['classe']
+            subject = doc['subject']
+            dataDict = {
+                'id' :id,
+                'title': title,
+                'course': course,
+                'tipo': tipo,
+                'difficulty': difficulty,
+                'duration': duration,
+                'classe': classe,
+                'subject': subject
+            }
+            dataJson.append(dataDict)
+        return jsonify(dataJson)
+
+@app.route('/verifSci/<int:id>', methods=['GET', 'DELETE', 'PUT'])
+def onedata1(id):
 
     # GET a specific data by id
     if request.method == 'GET':

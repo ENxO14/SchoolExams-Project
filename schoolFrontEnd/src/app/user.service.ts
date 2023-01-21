@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   private baseUrl = 'https://5000-enxo14-schoolexamsproje-ztr8nn7713j.ws-eu83.gitpod.io/users';
+  private baseUrl1 = 'https://5000-enxo14-schoolexamsproje-ztr8nn7713j.ws-eu83.gitpod.io/verifSci';
 
   constructor(private http: HttpClient) { }
 
@@ -28,7 +29,26 @@ export class UserService {
   }
 
   getUsersList(): Observable<any> {
-    /*return this.http.get(`${this.baseUrl}`);*/
-    return this.http.get("https://5000-enxo14-schoolexamsproje-ztr8nn7713j.ws-eu83.gitpod.io/users");
+    return this.http.get(`${this.baseUrl}`);
+  }
+  /** *************************************************************************************************/
+  getverifSci(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl1}/${id}`);
+  }
+
+  createverifSci(user: Object): Observable<Object> {
+    return this.http.post(`${this.baseUrl1}`, user);
+  }
+
+  updateverifSci(id: string, value: any): Observable<Object> {
+    return this.http.put(`${this.baseUrl1}/${id}`, value);
+  }
+
+  deleteverifSci(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl1}/${id}`, { responseType: 'text' });
+  }
+
+  getverifSciList(): Observable<any> {
+    return this.http.get(`${this.baseUrl1}`);
   }
 }
