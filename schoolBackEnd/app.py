@@ -108,39 +108,41 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    print("1")
     if request.method == 'POST':
+        print("2")
         name = request.form['name']
         lname = request.form['surname']
         email = request.form['email']
         password = request.form['password']
-        
+        print("3")
+
         conn = connection()
         # Create a cursor
         cursor = conn.cursor()
-
+        print("4")
         # Execute a SELECT query
         cursor.execute('SELECT * FROM docente WHERE email=%s', (email))
-
+        print("5")
         # Fetch the data
         account = cursor.fetchone()
-
+        print("6")
         if account:
+            print("7")
             return jsonify({"message": "Account already exists"}), 400
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            print("8")
             return jsonify({"message": "Invalid email address"}), 400
         elif not name or not password or not email:
+            print("9")
             return jsonify({"message": "Please fill out the form"}), 400
         else:
             # Execute an INSERT query
+            print("10")
             cursor.execute(
                 'INSERT INTO users (name, surname, email, password) VALUES (%s, %s, %s, %s)', (name,lname, email, password))
             conn.commit()
-            session['loggedin'] = True
-            session['name'] = name
-            session['email'] = email
             return jsonify({"message": "You have successfully registered"}), 201
-
-    return jsonify({"message": "Invalid request method"}), 400
 
 @app.route('/users', methods=['POST', 'GET'])
 def data():

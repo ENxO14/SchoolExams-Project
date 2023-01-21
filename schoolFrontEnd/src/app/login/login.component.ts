@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     if (Object.keys(this.data).length === 0 || this.data.hasOwnProperty('error')) {
       this.errorMessage = "Error: Invalid email or password";
     } else {
-      this.successMessage = "You have successfully registered!";
+      this.successMessage = "You have successfully logged!";
       localStorage.setItem('user', JSON.stringify(this.data));
       console.log("2.1");
       this.router.navigate(['/dashboard']);
