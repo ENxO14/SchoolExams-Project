@@ -1,0 +1,38 @@
+<h3>Update User</h3>
+<div  style="width: 500px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Title: </label>
+      <input type="text" class="form-control" id="title" required [(ngModel)]="user.title" name="title">
+    </div>
+
+    <div class="form-group">
+      <label for="course">Course: </label>
+      <input type="text" class="form-control" id="course" required [(ngModel)]="user.course" name="course">
+    </div>
+
+    <div class="form-group">
+      <label for="tipo">Type: </label>
+      <input type="text" class="form-control" id="tipo" required [(ngModel)]="user.tipo" name="tipo">
+    </div>
+
+    <div class="form-group">
+      <label for="difficulty">Difficulty: </label>
+      <input type="text" class="form-control" id="difficulty" required [(ngModel)]="user.difficulty" name="difficulty">
+    </div>
+    <div class="form-group">
+      <label for="duration">Duration: </label>
+      <input type="text" class="form-control" id="duration" required [(ngModel)]="user.duration" name="duration">
+    </div>
+   <div class="form-group">
+      <label for="classe">Class: </label>
+      <input type="text" class="form-control" id="classe" required [(ngModel)]="user.classe" name="classe">
+    </div>
+    <div class="form-group">
+      <label for="subject">Subject: </label>
+      <input type="text" class="form-control" id="subject" required [(ngModel)]="user.subject" name="subject">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

@@ -18,5 +18,11 @@ export class DashboardComponent {
     this.router.navigate(['/login']);
     console.log("hjhjhjhjhjhjkhjkh"+this.t);
   }
+  tec()  {
+    this.router.navigate(['/users']);
+  }
+  sicn()  {
+    this.router.navigate(['/users']);
+  }
 
 }

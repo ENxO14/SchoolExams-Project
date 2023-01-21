@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  client:
+      build:
+        dockerfile: Dockerfile
+        context: ./School-frontEnd
+      volumes:
+        #In questo modo dico a docker di usare la cartella del container /app/node_modules come volume
+        #La cartella locale node_modules (se non ha modifiche) non verrà più copiata perchè il volume esiste già
+        #Se c'è già l'immagine docker-compose non la builda
+        - /app/node_modules 
+        #Qui mappa tutto il contenuto della cartella locale client nella cartella app dell'immagine
+        #Ricorda che la WORKDIR dell'immagine è la cartella app
+        - ./School-frontEnd:/app
+      ports:
+        - 4200:4200
+      networks:
+      - shared-network
+  server:
+      build:
+        dockerfile: Dockerfile
+        context: ./School-backEnd
+      volumes:
+        - ./School-backEnd:/app
+      ports:
+        - 5000:5000
+      networks:
+      - shared-network
+
+networks:
+  shared-network:

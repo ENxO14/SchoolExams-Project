@@ -7,3 +7,4 @@ pyodbc
 pandas
 pymssql
 psycopg2
+#bson == 0.5.10
