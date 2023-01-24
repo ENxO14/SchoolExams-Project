@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { flaskLink } from '../link';
 
 
 
@@ -19,7 +20,12 @@ export class LoginComponent implements OnInit {
   obsLog: Observable<object> | undefined
   data: any = undefined!;
 
+  
+  private baseUrlPrin = flaskLink._API;
+
   constructor(private http: HttpClient, public router: Router) { }
+
+
 
   ngOnInit() {
 
@@ -50,7 +56,7 @@ export class LoginComponent implements OnInit {
   login() {
     const data = { email: this.email, password: this.password };
     console.log("0");
-    this.http.post('https://5000-enxo14-schoolexamsproje-cpo672s3qv9.ws-eu83.gitpod.io/login', data).subscribe(
+    this.http.post(this.baseUrlPrin +'login', data).subscribe(
       data => {
         console.log(data);
         if (data.hasOwnProperty('error')) {

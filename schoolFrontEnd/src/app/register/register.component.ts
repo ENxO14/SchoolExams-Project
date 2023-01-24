@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Docente } from '../docente';
+import { flaskLink } from '../link';
 
 @Component({
   selector: 'app-register',
@@ -21,6 +22,8 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(private http: HttpClient, public router: Router) { }
+
+  private baseUrlPrin = flaskLink._API;
 
   ngOnInit(): void {
     
@@ -46,7 +49,7 @@ export class RegisterComponent implements OnInit {
     }
   }*/
   register() {
-    this.http.post('https://5000-enxo14-schoolexamsproje-cpo672s3qv9.ws-eu83.gitpod.io/register',{ name: this.name, surname: this.surname, email: this.email, password: this.password }).subscribe(
+    this.http.post( this.baseUrlPrin + 'register',{ name: this.name, surname: this.surname, email: this.email, password: this.password }).subscribe(
       data => {
         console.log(data);
         if (data.hasOwnProperty('error')) {

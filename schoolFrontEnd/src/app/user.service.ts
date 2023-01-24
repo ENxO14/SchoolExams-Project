@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { flaskLink } from './link';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private baseUrl = 'https://5000-enxo14-schoolexamsproje-cpo672s3qv9.ws-eu83.gitpod.io/users';
-  private baseUrl1 = 'https://5000-enxo14-schoolexamsproje-cpo672s3qv9.ws-eu83.gitpod.io/verifSci';
+  private baseUrlPrin = flaskLink._API;
+
+  private baseUrl = this.baseUrlPrin + 'users';
+  private baseUrl1 = this.baseUrlPrin +'verifSci';
 
   constructor(private http: HttpClient) { }
 
