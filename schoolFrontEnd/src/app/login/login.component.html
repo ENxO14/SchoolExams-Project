@@ -16,8 +16,14 @@
 			<p class="bottom">Dont't have an account? <a routerLink="/register"> Register
 					here</a></p>
 		</form>
+		<div *ngIf="successMessage" class="alert alert-success">
+			{{ successMessage }}
+		  </div>
+		  
+		  <div *ngIf="errorMessage" class="alert alert-danger">
+			{{ errorMessage }}
+		  </div>
 	</div>
+	
 </div>
 
-<p *ngIf="errorMessage">{{ errorMessage }}</p>
-<p *ngIf="successMessage">{{ successMessage }}</p>

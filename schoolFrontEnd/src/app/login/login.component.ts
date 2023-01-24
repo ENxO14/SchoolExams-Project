@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login() {
+  /*login() {
     const data = { email: this.email, password: this.password };
     console.log("0");
     this.obsLog = this.http.post('https://5000-enxo14-schoolexamsproje-cpo672s3qv9.ws-eu83.gitpod.io/login', data)
@@ -46,6 +46,25 @@ export class LoginComponent implements OnInit {
       console.log("2.1");
       this.router.navigate(['/dashboard']);
     }
+  }*/
+  login() {
+    const data = { email: this.email, password: this.password };
+    console.log("0");
+    this.http.post('https://5000-enxo14-schoolexamsproje-cpo672s3qv9.ws-eu83.gitpod.io/login', data).subscribe(
+      data => {
+        console.log(data);
+        if (data.hasOwnProperty('error')) {
+          this.errorMessage = "Error: Invalid Informations!!";
+        } else {
+          this.successMessage = "You have successfully Registerd!";
+          localStorage.setItem('user', JSON.stringify(data));
+          this.router.navigate(['/dashboard']);
+        }
+      },
+      error => {
+        console.log(error);
+        this.errorMessage = "Error: Invalid Informations!!";
+  })
   }
 
 }

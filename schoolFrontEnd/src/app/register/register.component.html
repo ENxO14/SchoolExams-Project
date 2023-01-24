@@ -8,7 +8,7 @@
       </div>
       <div class="form-group mb-2">
         <label for="name">Last Name:</label>
-        <input type="text" class="form-control" id="lname" [(ngModel)]="lname" name="lname" placeholder="Enter Last Name">
+        <input type="text" class="form-control" id="surname" [(ngModel)]="surname" name="surname" placeholder="Enter Last Name">
       </div>
       <div class="form-group mb-2">
         <label for="email">Email:</label>
@@ -26,5 +26,10 @@
   </div>
 </div>
 
-<p *ngIf="errorMessage">{{ errorMessage }}</p>
-<p *ngIf="successMessage">{{ successMessage }}</p>
+<div *ngIf="successMessage" class="alert alert-success">
+  {{ successMessage }}
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>

@@ -111,10 +111,10 @@ def register():
     print("1")
     if request.method == 'POST':
         print("2")
-        name = request.form['name']
-        lname = request.form['surname']
-        email = request.form['email']
-        password = request.form['password']
+        name = request.json['name']
+        surname = request.json['surname']
+        email = request.json['email']
+        password = request.json['password']
         print("3")
 
         conn = connection()
@@ -140,7 +140,7 @@ def register():
             # Execute an INSERT query
             print("10")
             cursor.execute(
-                'INSERT INTO users (name, surname, email, password) VALUES (%s, %s, %s, %s)', (name,lname, email, password))
+                'INSERT INTO docente (name, surname, email, password) VALUES (%s, %s, %s, %s)', (name,surname, email, password))
             conn.commit()
             return jsonify({"message": "You have successfully registered"}), 201
 
