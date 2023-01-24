@@ -3,7 +3,7 @@ FROM node:alpine
 WORKDIR '/app' 
 #Copia e installa le dipendenze, se non ci sono cambiamenti docker recupera questa immagine dalla cache
 COPY ./package.json ./   
-RUN npm i -g @angular/cli
+RUN npm i -g @angular/cli@15.1.0
 RUN npm install
 #A questo punto copia il restante contenuto della cartella in cui si trova il docker file (.) nella working dierctory(.)
 COPY . .

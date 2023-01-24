@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     console.log(".");
-    this.obsReg = this.http.post('https://5000-enxo14-schoolexamsproje-ztr8nn7713j.ws-eu83.gitpod.io/register',{ name: this.name, lname: this.lname, email: this.email, password: this.password })
+    this.obsReg = this.http.post('https://5000-enxo14-schoolexamsproje-cpo672s3qv9.ws-eu83.gitpod.io/register',{ name: this.name, lname: this.lname, email: this.email, password: this.password })
     this.obsReg.subscribe(this.fati)
   }
 
