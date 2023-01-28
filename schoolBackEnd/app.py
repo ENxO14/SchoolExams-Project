@@ -159,8 +159,9 @@ def data():
         duration = body['duration']
         classe = body['classe']
         subject = body['subject']
+        link = body['link']
         
-        cur.execute("INSERT INTO verificaTec (title,course,tipo,difficulty,duration, classe,subject) VALUES (%s,%s,%s,%s,%s,%s,%s)", (title, course,tipo,difficulty,duration,classe,subject))
+        cur.execute("INSERT INTO verificaTec (title,course,tipo,difficulty,duration, classe,subject,link) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (title, course,tipo,difficulty,duration,classe,subject,link))
         conn.commit()
         return jsonify({
             'status': 'Data is posted to SQLite!',
@@ -170,7 +171,8 @@ def data():
             'difficulty':difficulty,
             'duration':duration,
             'classe':classe,
-            'subject':subject
+            'subject':subject,
+            'link':link
         })
 
     # GET all data from database
@@ -191,6 +193,8 @@ def data():
             duration = doc['duration']
             classe = doc['classe']
             subject = doc['subject']
+            link = doc['link']
+
             dataDict = {
                 'id' :id,
                 'title': title,
@@ -199,7 +203,8 @@ def data():
                 'difficulty': difficulty,
                 'duration': duration,
                 'classe': classe,
-                'subject': subject
+                'subject': subject,
+                'link':link
             }
             dataJson.append(dataDict)
         return jsonify(dataJson)
@@ -222,7 +227,8 @@ def onedata(id):
             'difficulty': ver['difficulty'],
             'duration': ver['duration'],
             'classe': ver['classe'],
-            'subject': ver['subject']
+            'subject': ver['subject'],
+            'link':ver['link']
         }
         cur.close()
         conn.close()
@@ -255,13 +261,15 @@ def onedata(id):
         duration = body['duration']
         classe = body['classe']
         subject = body['subject']
+        link = body['link']
+
 
         conn = connection()
         cur = conn.cursor()
         cur.execute("SELECT * FROM verificaTec WHERE id = %s", (id,))
         ver = cur.fetchone()
         if ver:
-            cur.execute("UPDATE verificaTec SET title = %s, course = %s, tipo = %s, difficulty = %s, duration = %s, classe = %s, subject = %s WHERE id = %s", (title, course, tipo, difficulty, duration, classe, subject, id))
+            cur.execute("UPDATE verificaTec SET title = %s, course = %s, tipo = %s, difficulty = %s, duration = %s, classe = %s, subject = %s,link = %s WHERE id = %s", (title, course, tipo, difficulty, duration, classe, subject,link, id))
             conn.commit()
             cur.close()
             conn.close()
@@ -284,8 +292,9 @@ def data1():
         duration = body['duration']
         classe = body['classe']
         subject = body['subject']
+        link = body['link']
         
-        cur.execute("INSERT INTO verificaTec (title,course,tipo,difficulty,duration, classe,subject) VALUES (%s,%s,%s,%s,%s,%s,%s)", (title, course,tipo,difficulty,duration,classe,subject))
+        cur.execute("INSERT INTO verificaTec (title,course,tipo,difficulty,duration, classe,subject,link) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (title, course,tipo,difficulty,duration,classe,subject,link))
         conn.commit()
         return jsonify({
             'status': 'Data is posted to SQLite!',
@@ -295,7 +304,8 @@ def data1():
             'difficulty':difficulty,
             'duration':duration,
             'classe':classe,
-            'subject':subject
+            'subject':subject,
+            'link':link
         })
 
     # GET all data from database
@@ -316,6 +326,7 @@ def data1():
             duration = doc['duration']
             classe = doc['classe']
             subject = doc['subject']
+            link = doc['link']
             dataDict = {
                 'id' :id,
                 'title': title,
@@ -324,7 +335,8 @@ def data1():
                 'difficulty': difficulty,
                 'duration': duration,
                 'classe': classe,
-                'subject': subject
+                'subject': subject,
+                'link':link
             }
             dataJson.append(dataDict)
         return jsonify(dataJson)
@@ -347,7 +359,8 @@ def onedata1(id):
             'difficulty': ver['difficulty'],
             'duration': ver['duration'],
             'classe': ver['classe'],
-            'subject': ver['subject']
+            'subject': ver['subject'],
+            'link':ver['link']
         }
         cur.close()
         conn.close()
@@ -380,13 +393,14 @@ def onedata1(id):
         duration = body['duration']
         classe = body['classe']
         subject = body['subject']
+        link = body['link']
 
         conn = connection()
         cur = conn.cursor()
         cur.execute("SELECT * FROM verificaTec WHERE id = %s", (id,))
         ver = cur.fetchone()
         if ver:
-            cur.execute("UPDATE verificaTec SET title = %s, course = %s, tipo = %s, difficulty = %s, duration = %s, classe = %s, subject = %s WHERE id = %s", (title, course, tipo, difficulty, duration, classe, subject, id))
+            cur.execute("UPDATE verificaTec SET title = %s, course = %s, tipo = %s, difficulty = %s, duration = %s, classe = %s, subject = %s, link = %s WHERE id = %s", (title, course, tipo, difficulty, duration, classe, subject,link, id))
             conn.commit()
             cur.close()
             conn.close()
