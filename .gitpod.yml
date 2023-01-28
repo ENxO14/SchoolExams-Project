@@ -4,7 +4,5 @@ tasks:
     init: cd schoolFrontEnd && npm i -g @angular/cli && npm i # runs during prebuild
     
   - name: Go back and start Docker Compose
-    command: |
-      cd ..
-      docker compose up
+    init: cd .. && docker compose up
 
