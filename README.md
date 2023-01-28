@@ -16,5 +16,5 @@ THANK YOU!
 # URL
 Una volta aperta la pagina web nella cartella di Flask (riconoscibile per l'urlo contenete la porta 5000) prende il link e inserirlo al link presente nel file flaskLink.ts <br>("SchoolExams-Project/schoolFrontEnd/src/app/**link.ts**")
 
-# CREATER
+# DEVELOPED BY
 Sasmitha Livera : livera.sasmitha14@gmail.com
