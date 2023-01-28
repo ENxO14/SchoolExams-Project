@@ -397,3 +397,5 @@ def onedata1(id):
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
+    os.environ['SERVER_LINK'] = "http://0.0.0.0:5000"
+
