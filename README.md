@@ -3,7 +3,7 @@ XYZ School is a modern and innovative educational institution that offers both t
 
 - About this project: 
 
-<sup>My project is a web application designed for teachers to manage exams and schedules for students. The website features a login and registration system for teachers to access the exam management features.</sup>
+> <sup>My project is a web application designed for teachers to manage exams and schedules for students. The website features a login and registration system for teachers to access the exam management features.</sup>
 
 <sup>Once logged in, teachers can select their course type, either "Istituto Tecnico" or "Liceo Scienze Applicate" and navigate to a table page where they can add, update, and delete exam information. The application uses routing to allow for seamless navigation between pages and to ensure that only authorized users have access to the exam management features.</sup>
 
