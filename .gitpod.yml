@@ -1,0 +1,5 @@
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - name : AngularWebServer
+    init: cd schoolFrontEnd && npm i -g @angular/cli && npm i # runs during prebuild
+
