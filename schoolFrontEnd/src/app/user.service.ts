@@ -10,10 +10,13 @@ export class UserService {
 
   private baseUrlPrin = flaskLink._API;
 
+
   private baseUrl = this.baseUrlPrin + 'users';
   private baseUrl1 = this.baseUrlPrin +'verifSci';
 
   constructor(private http: HttpClient) { }
+
+  
 
   getUser(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);

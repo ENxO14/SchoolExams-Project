@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: ("https://5000-enxo14-schoolexamsproje-cpo672s3qv9.ws-eu83.gitpod.io/")
+  //baseUrl: ("https://5000-enxo14-schoolexamsproje-8iqfaoj9967.ws-eu88.gitpod.io/"),
+  baseUrl : ('/api/')
 
 };
 
